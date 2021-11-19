@@ -1,9 +1,8 @@
-vars: 
-  commands:
-    - name: 'apt-get --yes install python3-pip'
-    - name: 'apt-get --yes install python-mysqldb'
-
 - name: 'install packages'
+  vars: 
+    commands:
+      - name: 'apt-get --yes install python3-pip'
+      - name: 'apt-get --yes install python-mysqldb'
   shell:
     cmd: "{{ item.name }}"
   loop: "{{ commands }}"
