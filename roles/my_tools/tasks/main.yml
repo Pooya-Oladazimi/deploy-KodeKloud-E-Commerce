@@ -1,0 +1,10 @@
+vars: 
+  commands:
+    - name: 'apt-get --yes install python3-pip'
+    - name: 'apt-get --yes install python-mysqldb'
+
+- name: 'install packages'
+  shell:
+    cmd: "{{ item.name }}"
+  loop: "{{ commands }}"
+  when: ansible_os_family == 'Debian'

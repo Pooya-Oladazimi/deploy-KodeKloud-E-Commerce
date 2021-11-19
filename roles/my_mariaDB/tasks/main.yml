@@ -4,5 +4,6 @@
 
 - name: 'install MariaDB'
   shell:
-    cmd: 'apt install mariadb-server'
+    cmd: 'apt install --yes mariadb-server'
+
 

@@ -1,0 +1,6 @@
+- name: 'Deploy KodeKloud'
+  hosts: target1
+  roles:
+    - role: my_tools
+      tag: 
+        - tool
