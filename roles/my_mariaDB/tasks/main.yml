@@ -1,0 +1,8 @@
+- name: 'apt update'
+  shell:
+    cmd: 'apt update'
+
+- name: 'install MariaDB'
+  shell:
+    cmd: 'apt install mariadb-server'
+
