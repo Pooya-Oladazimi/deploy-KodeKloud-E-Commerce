@@ -6,93 +6,34 @@
   shell:
     cmd: 'apt install --yes mariadb-server'
 
-# - name: 'set MariaDB root password'
-#   mysql_user: 
+- name: 'restart db'
+  shell:
+    cmd: 'service mariadb restart'
+
+# - name: 'create database ecomdb'
+#   mysql_db:
 #     login_unix_socket: /var/run/mysqld/mysqld.sock
-#     user: root 
-#     password: "1111" 
-#     host: localhost
-#     priv: "database.*:ALL" 
+#     name: ecomdb
+#     state: present
 
-- name: 'create .my.conf'
+# - name: Create database user'
+#   mysql_user:
+#     login_unix_socket: /var/run/mysqld/mysqld.sock
+#     name: ecomuser
+#     password: ecompassword
+#     priv: '*.*:ALL,GRANT'
+#     state: present
+
+- name: 'copy data loader'
   copy:
-    src: "{{ playbook_dir }}/roles/my_mariaDB/templates/.my.conf"
-    dest: ~/.my.cnf
+    src: "{{ playbook_dir }}/roles/my_mariaDB/templates/db-load-script.sql"
+    dest: ~/db-load-script.sql
 
-- name: 'restart db'
+- name: 'run loader'
   shell:
-    cmd: 'service mariadb restart'
+    chdir: '~'
+    cmd: 'mysql < db-load-script.sql'
 
-# - name: 'Deletes anonymous MySQL server user for ansible_fqdn'
-#   mysql_user:
-#     login_user: root
-#     login_password:  '1111' 
-#     user: "" 
-#     # host: "{{ ansible_fqdn }}" 
-#     host: localhost
-#     state: "absent"
-
-# - name: 'Deletes anonymous MySQL server user for localhost'
-#   mysql_user:
-#     # login_unix_socket: /var/run/mysqld/mysqld.sock
-#     login_user: root
-#     login_password:  '1111'
-#     priv: "database.*:ALL" 
-#     user: "" 
-#     state: "absent"
-
-- name: 'Secures the MySQL root user for IPV6 localhost (::1)'
-  mysql_user:
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    login_user: root
-    login_password:  '1111'
-    priv: "database.*:ALL" 
-    user: "root" 
-    password: "{{ 1111 }}" 
-    host: "::1"
-
-- name: 'Secures the MySQL root user for IPV4 localhost (127.0.0.1)'
-  mysql_user: 
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    login_user: root
-    login_password:  '1111'
-    priv: "database.*:ALL" 
-    user: "root" 
-    password: "{{ 1111 }}"
-    host: "127.0.0.1"
-
-- name: 'Secures the MySQL root user for localhost domain (localhost)'
-  mysql_user: 
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    login_user: root
-    login_password:  '1111'
-    priv: "database.*:ALL" 
-    user: "root" 
-    password: "{{ 1111 }}"
-    host: "localhost"
-
-- name: 'Secures the MySQL root user for server_hostname domain'
-  mysql_user:
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    login_user: root
-    login_password:  '1111'
-    priv: "database.*:ALL"  
-    user: "root" 
-    password: "{{ 1111 }}" 
-    host: "{{ ansible_fqdn }}"
-
-- name: 'Removes the MySQL test database'
-  mysql_db:
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    login_user: root
-    login_password:  '1111'
-    priv: "database.*:ALL"  
-    db: test 
-    state: absent
-
-- name: 'restart db'
-  shell:
-    cmd: 'service mariadb restart'
 
 
 

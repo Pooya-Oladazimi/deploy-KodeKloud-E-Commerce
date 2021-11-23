@@ -1,0 +1,16 @@
+- name: 'apt update'
+  shell:
+    cmd: 'apt-get update'
+
+- name: 'install nginx'
+  shell:
+    cmd: 'apt-get install --yes nginx'
+
+- name: 'check success'
+  shell:
+    cmd: 'nginx -v'
+    
+- name: 'start nginx'
+  service:
+    name: 'nginx'
+    state: started
