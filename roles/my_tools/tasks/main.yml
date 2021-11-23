@@ -1,8 +1,13 @@
 - name: 'install packages'
   vars: 
     commands:
+      - name: 'apt-get update'
+      - name: 'hwclock --hctosys'
+      - name: 'apt-get --yes install python3'
       - name: 'apt-get --yes install python3-pip'
-      - name: 'apt-get --yes install python-mysqldb'
+      - name: 'apt-get --yes install python3-mysqldb'
+      - name: 'apt-get --yes install python3-pymysql'
+      - name: 'python3 -m pip install pymysql'
   shell:
     cmd: "{{ item.name }}"
   loop: "{{ commands }}"

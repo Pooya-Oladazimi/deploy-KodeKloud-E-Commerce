@@ -3,4 +3,7 @@
   roles:
     - role: my_tools
       tag: 
-        - tool
+        - tools
+    - role: my_mariaDB
+      tag:
+        - db 
