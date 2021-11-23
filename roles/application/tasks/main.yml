@@ -2,6 +2,11 @@
 #   shell:
 #     cmd: 'git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/'
 
+- name: 'copy index.php'
+  copy:  
+    src: "{{ playbook_dir }}/roles/application/templates/index.php"
+    dest: /var/www/html/
+
 - name: 'change ownership'
   shell:
     chdir: /var/www/
