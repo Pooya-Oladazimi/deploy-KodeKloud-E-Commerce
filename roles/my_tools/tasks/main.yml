@@ -8,6 +8,8 @@
       - name: 'apt-get --yes install python3-mysqldb'
       - name: 'apt-get --yes install python3-pymysql'
       - name: 'python3 -m pip install pymysql'
+      - name: 'apt-get --yes install git'
+      - name: 'apt-get --yes install php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath'
   shell:
     cmd: "{{ item.name }}"
   loop: "{{ commands }}"

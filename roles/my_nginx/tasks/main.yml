@@ -9,6 +9,11 @@
 - name: 'check success'
   shell:
     cmd: 'nginx -v'
+
+- name: 'copy my config'
+  copy:  
+    src: "{{ playbook_dir }}/roles/my_nginx/templates/default"
+    dest: /etc/nginx/sites-available/
     
 - name: 'start nginx'
   service:

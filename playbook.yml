@@ -11,3 +11,5 @@
     - role: my_nginx
       tag:
         - nginx
+    
+    - role: application
