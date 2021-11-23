@@ -25,14 +25,25 @@
 #     state: present
 
 - name: 'copy data loader'
+  vars:
+    files:
+      - name: "create.sql"
+      - name: "insert.sql" 
   copy:
-    src: "{{ playbook_dir }}/roles/my_mariaDB/templates/db-load-script.sql"
-    dest: ~/db-load-script.sql
+    src: "{{ playbook_dir }}/roles/my_mariaDB/templates/{{ item.name }}"
+    dest: "~/{{ item.name }}"
+  loop: "{{ files }}"
+  
 
 - name: 'run loader'
+  vars:
+    statements:
+      - name: 'create.sql'
+      - name: 'insert.sql'
   shell:
     chdir: '~'
-    cmd: 'mysql < db-load-script.sql'
+    cmd: "mysql ecomdb < {{ item.name }}"
+  loop: "{{ statements }}"
 
 
 

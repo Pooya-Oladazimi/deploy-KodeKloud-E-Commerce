@@ -1,15 +1,15 @@
 - name: 'Deploy KodeKloud'
   hosts: target2
   roles:
-    - role: my_tools
-      tag: 
-        - tools
-    # - role: my_mariaDB
-    #   tag:
-    #     - db 
-    
-    - role: my_nginx
+    # - role: my_tools
+    #   tag: 
+    #     - tools
+    - role: my_mariaDB
       tag:
-        - nginx
+        - db 
     
-    - role: application
+    # - role: my_nginx
+    #   tag:
+    #     - nginx
+    
+    # - role: application

@@ -1,6 +1,6 @@
-# - name: 'clone code'
-#   shell:
-#     cmd: 'git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/'
+- name: 'clone code'
+  shell:
+    cmd: 'git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/'
 
 - name: 'copy index.php'
   copy:  
