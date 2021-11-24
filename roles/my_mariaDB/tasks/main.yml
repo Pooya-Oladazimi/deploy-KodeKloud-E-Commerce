@@ -10,19 +10,19 @@
   shell:
     cmd: 'service mariadb restart'
 
-# - name: 'create database ecomdb'
-#   mysql_db:
-#     login_unix_socket: /var/run/mysqld/mysqld.sock
-#     name: ecomdb
-#     state: present
+- name: 'create database ecomdb'
+  mysql_db:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: ecomdb
+    state: present
 
-# - name: Create database user'
-#   mysql_user:
-#     login_unix_socket: /var/run/mysqld/mysqld.sock
-#     name: ecomuser
-#     password: ecompassword
-#     priv: '*.*:ALL,GRANT'
-#     state: present
+- name: Create database user'
+  mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: ecomuser
+    password: ecompassword
+    priv: '*.*:ALL,GRANT'
+    state: present
 
 - name: 'copy data loader'
   vars:

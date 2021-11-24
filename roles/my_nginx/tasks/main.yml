@@ -2,6 +2,10 @@
   shell:
     cmd: 'apt-get update'
 
+- name: 'Remove apache2'
+  shell:
+    cmd: 'apt --yes remove apache2'
+
 - name: 'install nginx'
   shell:
     cmd: 'apt-get install --yes nginx'
@@ -9,11 +13,6 @@
 - name: 'check success'
   shell:
     cmd: 'nginx -v'
-
-- name: 'copy my config'
-  copy:  
-    src: "{{ playbook_dir }}/roles/my_nginx/templates/default"
-    dest: /etc/nginx/sites-available/
     
 - name: 'start nginx'
   service:

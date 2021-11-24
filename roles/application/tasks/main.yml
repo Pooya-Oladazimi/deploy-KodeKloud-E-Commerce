@@ -1,3 +1,13 @@
+- name: 'empty html directory'
+  shell:
+    chdir: /var/www/html
+    cmd: 'rm index.nginx-debian.html'
+
+- name: 'empty html directory'
+  shell:
+    chdir: /var/www/html
+    cmd: 'rm index.html'
+
 - name: 'clone code'
   shell:
     cmd: 'git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/'
@@ -11,6 +21,11 @@
   shell:
     chdir: /var/www/
     cmd: 'chown -R root:www-data html/' 
+    
+- name: 'copy my config'
+  copy:  
+    src: "{{ playbook_dir }}/roles/my_nginx/templates/default"
+    dest: /etc/nginx/sites-available/
 
 - name: 'reload nginx'
   shell:
